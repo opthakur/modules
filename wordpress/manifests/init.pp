@@ -1,7 +1,7 @@
-class wordpress {
 
 exec {'apt-get update' : 
-		path => '/usr/bin','/usr/sbin'}
+		path => ['/usr/bin','/usr/sbin']
+		}
 
 package {'apache2':
 		ensure => present}
@@ -46,14 +46,13 @@ file {'/var/www/html/wordpress/wp-config.php':
 		ensure => present,
 		source => "/var/www/html/wordpress/wp-config-sample.php"}
 
-file {"/var/www/html/wordpress"
+file {"/var/www/html/wordpress":
 		recurse => true,
-		mode => 0775,
+		mode => '0775',
 		owner => 'www-data',
 		group => 'www-data',
 		}
 
 exec {'service apache2 restart': 
-		path => '/usr/sbin'}
+		path => ['/usr/sbin','/usr/bin','/bin','/sbin']}
 
-}
