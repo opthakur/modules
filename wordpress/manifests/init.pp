@@ -42,9 +42,8 @@ exec {'wget https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwor
 		cwd => '/var/www/html/wordpress/'
 		}
 
-file {'/var/www/html/wordpress/wp-config.php':
-		ensure => present,
-		source => "/var/www/html/wordpress/wp-config-sample.php"}
+exec {'mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php':
+		path =. '/usr/bin'}
 
 file {"/var/www/html/wordpress":
 		recurse => true,
