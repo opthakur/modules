@@ -1,4 +1,4 @@
-
+class wordpress {
 exec {'apt-get update' : 
 		path => ['/usr/bin','/usr/sbin']
 		}
@@ -55,3 +55,4 @@ file {"/var/www/html/wordpress":
 exec {'service apache2 restart': 
 		path => ['/usr/sbin','/usr/bin','/bin','/sbin']}
 
+}
